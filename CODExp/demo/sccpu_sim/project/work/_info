@@ -1,0 +1,241 @@
+m255
+K3
+z0
+13
+cModel Technology
+Z0 dD:\codtest\project02
+T_opt
+!s110 1776946711
+V]W@M=_@Y?QoVADOTNATi60
+04 9 4 work sccomp_tb fast 0
+=1-40c2ba54892a-69ea0e15-1b2-5424
+o-quiet -auto_acc_if_foreign -work work
+Z1 tCvgOpt 0
+n@_opt
+OL;O;10.5;63
+R0
+valu
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 NVZMb`X]KK;Z@la:HReL_0
+I92:5ea:m]eZUnJ:DD>bjc2
+Z3 dD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project
+w1738901860
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/alu.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/alu.v
+L0 3
+Z4 OL;L;10.5;63
+Z5 !s108 1776946679.000000
+!s107 ctrl_encode_def.v|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/alu.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/alu.v|
+!i113 0
+Z6 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+R1
+vctrl
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 z3XlLWJecCDTzF^H^[U=00
+IXOi[P:BFZKcabSXQBn6>P2
+R3
+w1739417804
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/ctrl.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/ctrl.v
+L0 3
+R4
+R5
+!s107 ctrl_encode_def.v|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/ctrl.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/ctrl.v|
+!i113 0
+R6
+R1
+vdm
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 PJVbi5[EjlI8D;U?UbGP>0
+I08o>:h1]5nZZ_IhUBEPf[1
+R3
+w1739064774
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/dm.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/dm.v
+L0 3
+R4
+R5
+!s107 ctrl_encode_def.v|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/dm.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/dm.v|
+!i113 0
+R6
+R1
+vEXT
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 3m[L0NUC0SgUOkW4Cf1`P2
+I`CYIWOj3a6c2JKMhXRlg^3
+R3
+w1739418224
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/EXT.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/EXT.v
+L0 2
+R4
+R5
+!s107 ctrl_encode_def.v|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/EXT.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/EXT.v|
+!i113 0
+R6
+R1
+n@e@x@t
+vim
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 f^f9ZXT:J?P6VWJ;Bi7eP2
+IcB4Cze=2z7;oZW_3]>hJi2
+R3
+w1738914030
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/im.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/im.v
+L0 2
+R4
+R5
+!s107 D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/im.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/im.v|
+!i113 0
+R6
+R1
+vNPC
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 MZ`MJY4F7foPHG[1Q_]bg2
+I41@^5iQ:BCb_m55A^]BDT3
+R3
+w1739417980
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/NPC.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/NPC.v
+L0 3
+R4
+R5
+!s107 ctrl_encode_def.v|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/NPC.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/NPC.v|
+!i113 0
+R6
+R1
+n@n@p@c
+vPC
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 CGP:P;5nhnMCE[SM3>6R22
+IBVBh2Bi2lR1_<gQ9lh^L80
+R3
+w1738896040
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/PC.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/PC.v
+L0 1
+R4
+R5
+!s107 D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/PC.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/PC.v|
+!i113 0
+R6
+R1
+n@p@c
+vRF
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 LJ8Tg]YkD[OhQOQJ9KA3X1
+IH<7GSF?d6XM`:cEUb:c5[2
+R3
+w1739438208
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/RF.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/RF.v
+L0 1
+R4
+Z7 !s108 1776946680.000000
+!s107 D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/RF.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/RF.v|
+!i113 0
+R6
+R1
+n@r@f
+vsccomp
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 EY[QIeBWOCIgkFaf4Koee2
+Ia7gg_Hak@LK[d_W;3DJz30
+R3
+w1739506418
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp.v
+L0 2
+R4
+R7
+!s107 ctrl_encode_def.v|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp.v|
+!i113 0
+R6
+R1
+vsccomp_tb
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 C[d0n`fohWZU15YYz@V1a1
+IEdBH6AS3B54mA;h37jWf_2
+R3
+w1739781332
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp_tb.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp_tb.v
+L0 2
+R4
+R7
+!s107 D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/sccomp_tb.v|
+!i113 0
+R6
+R1
+vSCCPU
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 ]JnPUXUU@[48`XAB;QiYG3
+Ij_A2dk4fHJF;ae6HYBPk<2
+R3
+w1739438298
+8D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/SCCPU.v
+FD:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/SCCPU.v
+L0 2
+R4
+R5
+!s107 ctrl_encode_def.v|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/SCCPU.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/Code/FPGA/ComputerDesignLabs/ComputerDesignLabs/CODExp/demo/sccpu_sim/project/SCCPU.v|
+!i113 0
+R6
+R1
+n@s@c@c@p@u
