@@ -27,41 +27,41 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3}单周期 ALU 中比较、分支和移位的实现}{5}{lstlisting.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5}流水线 CPU 的实现与冒险处理}{5}{section.5}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {4}流水线 CPU 中四组段寄存器}{5}{lstlisting.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 代码截图占位 C1-pipeline-registers：请截取 \texttt  {source-pipeline/PipelineCPU.v} 第 20--62 行 IF/ID、ID/EX、EX/MEM、MEM/WB 四组段寄存器定义。建议图片命名为 \texttt  {C1-pipeline-registers.png}。\relax }}{6}{figure.caption.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces 流水线 CPU 的 IF/ID、ID/EX、EX/MEM、MEM/WB 四组段寄存器\relax }}{7}{figure.caption.3}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {5}流水线 CPU 顶层对子模块的连接}{7}{lstlisting.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 代码截图占位 C0-pipeline-modules：请截取 \texttt  {source-pipeline/PipelineCPU.v} 第 102--177 行 \texttt  {pipe\_decode}、\texttt  {pipe\_alu}、\texttt  {pipe\_branch} 三个模块实例化代码。建议图片命名为 \texttt  {C0-pipeline-modules.png}。\relax }}{8}{figure.caption.4}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {6}流水线 CPU 的数据转发选择}{8}{lstlisting.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 代码截图占位 C2-forwarding：请截取 \texttt  {source-pipeline/hazard\_unit.v} 第 35--43 行 \texttt  {forward\_a} 和 \texttt  {forward\_b} 的数据转发判断。建议图片命名为 \texttt  {C2-forwarding.png}。\relax }}{9}{figure.caption.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 流水线 CPU 中 forward\_a 与 forward\_b 的 RAW 数据转发判断\relax }}{9}{figure.caption.4}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {7}load-use 暂停与 bubble 插入}{9}{lstlisting.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 代码截图占位 C3-load-use-stall：请截取 \texttt  {source-pipeline/hazard\_unit.v} 第 25--33 行 \texttt  {load\_use\_hazard}、\texttt  {pc\_write}、\texttt  {ifid\_write}、\texttt  {idex\_flush} 的代码。建议图片命名为 \texttt  {C3-load-use-stall.png}。\relax }}{10}{figure.caption.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 流水线 CPU 的 load-use 冒险检测、暂停和 bubble 插入\relax }}{10}{figure.caption.5}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {8}跳转目标计算与流水线冲刷}{10}{lstlisting.8}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 代码截图占位 B2-jalr-branch-flush：请截取 \texttt  {source-pipeline/pipe\_branch.v} 第 29--31 行 \texttt  {take\_branch/branch\_target}，以及 \texttt  {source-pipeline/PipelineCPU.v} 第 308--317 行 PC 更新和 IF/ID flush。建议图片命名为 \texttt  {B2-jalr-branch-flush.png}。\relax }}{11}{figure.caption.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces 流水线 CPU 的跳转目标计算、PC 更新和错误路径冲刷\relax }}{11}{figure.caption.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}两条指令的代码级执行过程}{11}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}流水线 CPU 中运算指令 add 的执行过程}{11}{subsection.6.1}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {9}流水线 add：IF/ID 和 ID/EX 保存指令与译码结果}{12}{lstlisting.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces 代码截图占位 A1-add-译码与段寄存器：请截取 \texttt  {source-pipeline/pipe\_decode.v} 第 57--72 行 R-type/add 译码，以及 \texttt  {source-pipeline/PipelineCPU.v} 第 318--322 行 IF/ID 保存、第 287--305 行 ID/EX 保存。建议图片命名为 \texttt  {A1-add-decode-idex.png}。\relax }}{12}{figure.caption.8}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {10}流水线 add：转发选择、ALU 加法和写回}{12}{lstlisting.10}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 代码截图占位 A2-add-执行与写回：请截取 \texttt  {source-pipeline/PipelineCPU.v} 第 136--156 行转发输入和 ALU 实例化、第 250--264 行 EX/MEM 到 MEM/WB 传递，以及 \texttt  {source-pipeline/pipe\_alu.v} 第 10--14 行 \texttt  {PIPE\_ALU\_ADD}。建议图片命名为 \texttt  {A2-add-ex-wb.png}。\relax }}{13}{figure.caption.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}流水线 CPU 中跳转指令 jalr 的执行过程}{13}{subsection.6.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces 流水线 add 指令的 R 型译码、IF/ID 保存和 ID/EX 控制信号保存\relax }}{13}{figure.caption.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {10}流水线 add：转发选择、ALU 加法和写回}{13}{lstlisting.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces 流水线 add 指令的转发输入选择、ALU 加法和写回路径\relax }}{14}{figure.caption.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}流水线 CPU 中跳转指令 jalr 的执行过程}{14}{subsection.6.2}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {11}流水线 jalr：译码和 ID/EX 控制信号保存}{14}{lstlisting.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 代码截图占位 B1-jalr-译码与IDEX：请截取 \texttt  {source-pipeline/pipe\_decode.v} 第 115--120 行 jalr 译码，以及 \texttt  {source-pipeline/PipelineCPU.v} 第 291--305 行 ID/EX 保存 jalr 控制信号。建议图片命名为 \texttt  {B1-jalr-decode-idex.png}。\relax }}{14}{figure.caption.10}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {12}流水线 jalr：跳转判断、目标地址、PC 更新和冲刷}{14}{lstlisting.12}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 代码截图占位 B2-jalr-跳转与冲刷：请截取 \texttt  {source-pipeline/pipe\_branch.v} 第 29--31 行 \texttt  {take\_branch/branch\_target/pc4\_result}，\texttt  {source-pipeline/PipelineCPU.v} 第 308--317 行 PC 更新和 IF/ID flush，以及 \texttt  {source-pipeline/hazard\_unit.v} 第 30--33 行 flush 输出。建议图片命名为 \texttt  {B2-jalr-branch-flush.png}。\relax }}{15}{figure.caption.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}仿真结果}{15}{section.7}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {13}最终扩展指令自动测试输出}{15}{lstlisting.13}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 学号排序仿真结果\relax }}{16}{table.caption.12}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {14}三类 CPU 学号排序仿真关键输出}{16}{lstlisting.14}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces 测试1截图占位：单周期 CPU 30 条指令测试。请替换为仿真窗口或终端截图，并选取若干关键寄存器值。\relax }}{16}{figure.caption.13}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces 测试2截图占位：流水线 CPU 30 条指令测试。请替换为仿真窗口或终端截图，并选取若干关键寄存器值。\relax }}{17}{figure.caption.14}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces 测试3截图占位：单周期 CPU 学号排序测试。建议展示 original\_sid=54873530、sorted\_sid=03345578 或对应寄存器/内存值。\relax }}{17}{figure.caption.15}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces 测试4截图占位：流水线 CPU 学号排序测试。建议展示 original\_sid=54873530、sorted\_sid=03345578 或对应寄存器/内存值。\relax }}{17}{figure.caption.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}开发板运行结果}{17}{section.8}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces 测试5开发板照片占位：请放入流水线 CPU 上板排序照片，照片中应能看到原始学号或排序后学号显示。\relax }}{18}{figure.caption.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}代码与 diff 提交说明}{18}{section.9}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 主要实现文件规模\relax }}{18}{table.caption.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces 流水线 jalr 指令的译码和 ID/EX 控制信号保存\relax }}{15}{figure.caption.9}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {12}流水线 jalr：跳转判断、目标地址、PC 更新和冲刷}{15}{lstlisting.12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 流水线 jalr 指令的跳转判断、目标地址生成、PC 更新和流水线冲刷\relax }}{16}{figure.caption.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}仿真结果}{16}{section.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {13}最终扩展指令自动测试输出}{16}{lstlisting.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 学号排序仿真结果\relax }}{17}{table.caption.11}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {14}三类 CPU 学号排序仿真关键输出}{17}{lstlisting.14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces 最终扩展指令自动测试 16 个测试点全部通过\relax }}{17}{figure.caption.12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces 测试 1：单周期 CPU 运行 30 条指令测试程序\relax }}{18}{figure.caption.13}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces 测试 2：流水线 CPU 运行 30 条指令测试程序\relax }}{18}{figure.caption.14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces 测试 3：单周期 CPU 运行学号排序程序\relax }}{19}{figure.caption.15}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces 测试 4：流水线 CPU 运行学号排序程序\relax }}{19}{figure.caption.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}开发板运行结果}{19}{section.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces 测试 5：开发板上流水线 CPU 运行学号排序程序\relax }}{20}{figure.caption.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}代码与 diff 提交说明}{20}{section.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 主要实现文件规模\relax }}{21}{table.caption.18}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:code-files}{{4}{18}{主要实现文件规模\relax }{table.caption.18}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces diff 网页顶部统计截图占位：请替换为 GitHub diff 或课程工具生成的 diff 网页截图，截图只需展示修改文件列表和每个文件增删行数。\relax }}{19}{figure.caption.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}结果分析}{19}{section.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {11}结论}{20}{section.11}\protected@file@percent }
-\gdef \@abspage@last{20}
+\newlabel{tab:code-files}{{4}{21}{主要实现文件规模\relax }{table.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Verilog 差异报告顶部统计与修改文件列表\relax }}{21}{figure.caption.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}结果分析}{21}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}结论}{22}{section.11}\protected@file@percent }
+\gdef \@abspage@last{22}

@@ -45,8 +45,16 @@
 \end{figure}
 }
 
+\newcommand{\reportimage}[3]{
+\begin{figure}[H]
+\centering
+\includegraphics[width=#2\textwidth]{#1}
+\caption{#3}
+\end{figure}
+}
+
 \title{计算机设计实验：单周期、多周期与流水线 RISC-V CPU 设计报告}
-\author{单位：\underline{\hspace{4cm}}\quad 姓名：\underline{\hspace{3cm}}\quad 学号：\underline{\hspace{3cm}}}
+\author{单位：武汉大学\quad 姓名：朱威豪\quad 学号：2024302181030}
 \date{2026年6月}
 
 \begin{document}
@@ -216,7 +224,7 @@ reg [31:0] memwb_mem_data;
 reg [4:0]  memwb_rd;
 \end{lstlisting}
 
-\placeholder{代码截图占位 C1-pipeline-registers：请截取 \texttt{source-pipeline/PipelineCPU.v} 第 20--62 行 IF/ID、ID/EX、EX/MEM、MEM/WB 四组段寄存器定义。建议图片命名为 \texttt{C1-pipeline-registers.png}。}{4cm}
+\reportimage{figures/C1-pipeline-registers.png}{0.94}{流水线 CPU 的 IF/ID、ID/EX、EX/MEM、MEM/WB 四组段寄存器}
 
 流水线译码逻辑被整理到 \texttt{pipe\_decode.v}。该模块从指令字段中生成 \texttt{rs1}、\texttt{rs2}、\texttt{rd}、立即数、ALU 操作码、写回选择和分支跳转控制信号。\texttt{PipelineCPU.v} 在 ID 阶段实例化该模块，并在时钟上升沿把这些控制信号写入 ID/EX 段寄存器。ALU 和分支判断也分别由 \texttt{pipe\_alu.v} 与 \texttt{pipe\_branch.v} 完成，使顶层代码集中在流水线寄存器推进和模块连接上。这样的模块划分也使流水线与单周期 CPU 的差异更清晰：单周期 CPU 的译码、ALU 和 NPC 逻辑在一个周期内直接组合连接，流水线 CPU 则需要把 ID 阶段产生的控制信号保存到 ID/EX，再由 EX 阶段模块使用。
 
@@ -255,7 +263,7 @@ pipe_branch U_BRANCH(
 );
 \end{lstlisting}
 
-\placeholder{代码截图占位 C0-pipeline-modules：请截取 \texttt{source-pipeline/PipelineCPU.v} 第 102--177 行 \texttt{pipe\_decode}、\texttt{pipe\_alu}、\texttt{pipe\_branch} 三个模块实例化代码。建议图片命名为 \texttt{C0-pipeline-modules.png}。}{4cm}
+上述代码展示了流水线 CPU 顶层的模块化连接方式，译码、ALU 和分支判断不再集中写在一个大模块中，而是通过清晰的端口关系接入顶层流水线寄存器推进逻辑。验收时若被要求说明模块划分，可以从该实例化代码解释 ID 阶段如何生成控制信号、EX 阶段如何使用 ALU 结果，以及分支模块如何给出跳转目标。
 
 普通 RAW 数据冒险通过转发解决。RAW 是 read after write，即后一条指令要读取的寄存器正好是前一条或前两条指令要写回的寄存器。例如 \texttt{add x1,x2,x3} 后紧跟 \texttt{sub x4,x1,x5} 时，\texttt{sub} 在 EX 阶段需要 x1 的新值，但该值可能还没有写回寄存器堆。流水线 CPU 因此不能只依赖 RF 读口，而要在 EX 阶段用 \texttt{forward\_a} 和 \texttt{forward\_b} 选择 ALU 输入。当结果已经在 EX/MEM 阶段可见时，优先从 \texttt{exmem\_alu\_result} 转发；当结果已经进入 MEM/WB 阶段时，从 \texttt{wb\_data} 转发。\texttt{hazard\_unit.v} 对 EX/MEM 的转发额外排除了 \texttt{mem\_read}，因为 load 指令的数据在 EX/MEM 阶段还没有从数据存储器返回，不能作为有效转发源。
 
@@ -271,7 +279,7 @@ assign forward_b =
     2'b00;
 \end{lstlisting}
 
-\placeholder{代码截图占位 C2-forwarding：请截取 \texttt{source-pipeline/hazard\_unit.v} 第 35--43 行 \texttt{forward\_a} 和 \texttt{forward\_b} 的数据转发判断。建议图片命名为 \texttt{C2-forwarding.png}。}{4cm}
+\reportimage{figures/C2-forwarding.png}{0.94}{流水线 CPU 中 forward\_a 与 forward\_b 的 RAW 数据转发判断}
 
 load-use 冒险不能只靠转发解决，因为 \texttt{lw} 的数据要到 MEM 阶段结束后才可用，而紧随其后的相关指令在下一拍就会进入 EX 阶段。假设指令序列为 \texttt{lw x1,0(x2)} 后接 \texttt{add x3,x1,x4}，当 \texttt{add} 进入 EX 阶段时，\texttt{lw} 正在 MEM 阶段等待数据存储器输出，EX/MEM 中没有可转发的最终 load 数据。实验中通过 \texttt{load\_use\_hazard} 检测 ID 阶段源寄存器是否依赖 ID/EX 阶段的 load 目的寄存器。检测成立时，PC 和 IF/ID 暂停一拍，ID/EX 被冲成 bubble，使 load 有时间进入 MEM/WB，下一拍再通过 MEM/WB 转发给后续指令。
 
@@ -287,7 +295,7 @@ assign idex_flush = load_use_hazard | ex_take_branch;
 assign ifid_flush = ex_take_branch;
 \end{lstlisting}
 
-\placeholder{代码截图占位 C3-load-use-stall：请截取 \texttt{source-pipeline/hazard\_unit.v} 第 25--33 行 \texttt{load\_use\_hazard}、\texttt{pc\_write}、\texttt{ifid\_write}、\texttt{idex\_flush} 的代码。建议图片命名为 \texttt{C3-load-use-stall.png}。}{4cm}
+\reportimage{figures/C3-load-use-stall.png}{0.94}{流水线 CPU 的 load-use 冒险检测、暂停和 bubble 插入}
 
 控制冒险由 \texttt{pipe\_branch.v} 和 \texttt{hazard\_unit.v} 配合处理。分支、\texttt{jal} 和 \texttt{jalr} 的跳转目标在 EX 阶段确定，在此之前 IF 阶段可能已经按 PC+4 取入了顺序路径上的指令。如果 EX 阶段确认要跳转，\texttt{ex\_take\_branch} 置 1，PC 在时序逻辑中更新为 \texttt{ex\_branch\_target}，同时 IF/ID 和 ID/EX 被清空。这样已经被顺序取入的错误路径指令不会继续向后执行，也不会产生错误写回或错误访存。单周期 CPU 不存在这个问题，因为单周期 CPU 在同一周期内就能用当前指令决定下一 PC，没有后续指令提前进入流水线。
 
@@ -309,7 +317,7 @@ if (ifid_flush) begin
 end
 \end{lstlisting}
 
-\placeholder{代码截图占位 B2-jalr-branch-flush：请截取 \texttt{source-pipeline/pipe\_branch.v} 第 29--31 行 \texttt{take\_branch/branch\_target}，以及 \texttt{source-pipeline/PipelineCPU.v} 第 308--317 行 PC 更新和 IF/ID flush。建议图片命名为 \texttt{B2-jalr-branch-flush.png}。}{4cm}
+\reportimage{figures/B2-jalr-branch-flush.png}{0.94}{流水线 CPU 的跳转目标计算、PC 更新和错误路径冲刷}
 
 \section{两条指令的代码级执行过程}
 
@@ -350,7 +358,7 @@ idex_alu_op <= id_alu_op;
 idex_reg_write <= id_reg_write;
 \end{lstlisting}
 
-\placeholder{代码截图占位 A1-add-译码与段寄存器：请截取 \texttt{source-pipeline/pipe\_decode.v} 第 57--72 行 R-type/add 译码，以及 \texttt{source-pipeline/PipelineCPU.v} 第 318--322 行 IF/ID 保存、第 287--305 行 ID/EX 保存。建议图片命名为 \texttt{A1-add-decode-idex.png}。}{4cm}
+\reportimage{figures/A1-add-decode-idex.png}{0.94}{流水线 add 指令的 R 型译码、IF/ID 保存和 ID/EX 控制信号保存}
 
 \begin{lstlisting}[language=Verilog,caption={流水线 add：转发选择、ALU 加法和写回}]
 case (forward_a)
@@ -370,7 +378,7 @@ wire [31:0] wb_data =
     (memwb_wb_sel == `PIPE_WB_MEM) ? memwb_mem_data : memwb_alu_result;
 \end{lstlisting}
 
-\placeholder{代码截图占位 A2-add-执行与写回：请截取 \texttt{source-pipeline/PipelineCPU.v} 第 136--156 行转发输入和 ALU 实例化、第 250--264 行 EX/MEM 到 MEM/WB 传递，以及 \texttt{source-pipeline/pipe\_alu.v} 第 10--14 行 \texttt{PIPE\_ALU\_ADD}。建议图片命名为 \texttt{A2-add-ex-wb.png}。}{4cm}
+\reportimage{figures/A2-add-ex-wb.png}{0.94}{流水线 add 指令的转发输入选择、ALU 加法和写回路径}
 
 \subsection{流水线 CPU 中跳转指令 jalr 的执行过程}
 
@@ -396,7 +404,7 @@ idex_alu_src <= id_alu_src;
 idex_jalr <= id_jalr;
 \end{lstlisting}
 
-\placeholder{代码截图占位 B1-jalr-译码与IDEX：请截取 \texttt{source-pipeline/pipe\_decode.v} 第 115--120 行 jalr 译码，以及 \texttt{source-pipeline/PipelineCPU.v} 第 291--305 行 ID/EX 保存 jalr 控制信号。建议图片命名为 \texttt{B1-jalr-decode-idex.png}。}{4cm}
+\reportimage{figures/B1-jalr-decode-idex.png}{0.94}{流水线 jalr 指令的译码和 ID/EX 控制信号保存}
 
 \begin{lstlisting}[language=Verilog,caption={流水线 jalr：跳转判断、目标地址、PC 更新和冲刷}]
 assign take_branch = valid && ((branch && branch_ok) || jal || jalr);
@@ -410,7 +418,7 @@ assign ifid_flush = ex_take_branch;
 assign idex_flush = load_use_hazard | ex_take_branch;
 \end{lstlisting}
 
-\placeholder{代码截图占位 B2-jalr-跳转与冲刷：请截取 \texttt{source-pipeline/pipe\_branch.v} 第 29--31 行 \texttt{take\_branch/branch\_target/pc4\_result}，\texttt{source-pipeline/PipelineCPU.v} 第 308--317 行 PC 更新和 IF/ID flush，以及 \texttt{source-pipeline/hazard\_unit.v} 第 30--33 行 flush 输出。建议图片命名为 \texttt{B2-jalr-branch-flush.png}。}{4cm}
+\reportimage{figures/B2-jalr-branch-flush.png}{0.94}{流水线 jalr 指令的跳转判断、目标地址生成、PC 更新和流水线冲刷}
 
 \section{仿真结果}
 
@@ -458,23 +466,24 @@ CPU 类型 & 仿真命令入口 & 原始学号 & 排序结果 \\
 [PASS] lab-6 pipeline sid sorting simulation passed.
 \end{lstlisting}
 
-\placeholder{测试1截图占位：单周期 CPU 30 条指令测试。请替换为仿真窗口或终端截图，并选取若干关键寄存器值。}{4cm}
+\reportimage{figures/final-all-tests.png}{0.94}{最终扩展指令自动测试 16 个测试点全部通过}
 
-\placeholder{测试2截图占位：流水线 CPU 30 条指令测试。请替换为仿真窗口或终端截图，并选取若干关键寄存器值。}{4cm}
+\reportimage{figures/test1-sc-30.png}{0.94}{测试 1：单周期 CPU 运行 30 条指令测试程序}
 
-\placeholder{测试3截图占位：单周期 CPU 学号排序测试。建议展示 original\_sid=54873530、sorted\_sid=03345578 或对应寄存器/内存值。}{4cm}
+\reportimage{figures/test2-pl-30.png}{0.94}{测试 2：流水线 CPU 运行 30 条指令测试程序}
 
-\placeholder{测试4截图占位：流水线 CPU 学号排序测试。建议展示 original\_sid=54873530、sorted\_sid=03345578 或对应寄存器/内存值。}{4cm}
+\reportimage{figures/test3-sc-sort.png}{0.94}{测试 3：单周期 CPU 运行学号排序程序}
+\reportimage{figures/test4-pl-sort.png}{0.94}{测试 4：流水线 CPU 运行学号排序程序}
 
 \section{开发板运行结果}
 
-开发板演示部分采用 Nexys A7 相关封装文件。\texttt{board\_mem.v} 提供上板使用的指令和数据存储接口，\texttt{hex8\_7seg.v} 负责八位七段数码管显示，\texttt{nexys\_a7.xdc} 提供约束文件。预期演示方式是复位后显示原始学号 \texttt{54873530}，按键触发排序运行后显示 \texttt{03345578}。当前报告保留开发板照片占位，实际提交前需要替换为板上运行照片或视频截图。
+开发板演示部分采用 Nexys A7 相关封装文件。\texttt{board\_mem.v} 提供上板使用的指令和数据存储接口，\texttt{hex8\_7seg.v} 负责八位七段数码管显示，\texttt{nexys\_a7.xdc} 提供约束文件。演示方式是复位后显示原始学号 \texttt{54873530}，按键触发排序运行后显示 \texttt{03345578}。图中展示了流水线 CPU 上板运行学号排序程序的显示结果，作为测试 5 的硬件运行证据。
 
-\placeholder{测试5开发板照片占位：请放入流水线 CPU 上板排序照片，照片中应能看到原始学号或排序后学号显示。}{6cm}
+\reportimage{figures/test5-board-pl-sort.jpg}{0.55}{测试 5：开发板上流水线 CPU 运行学号排序程序}
 
 \section{代码与 diff 提交说明}
 
-实验代码需要上传到个人 GitHub 仓库，并在最终报告中给出仓库链接。当前报告先保留链接占位，正式提交前应替换为可访问的仓库地址。由于本地 \texttt{lab-6} 目录不是 git 仓库，报告不能从本地直接生成标准 \texttt{git diff --stat}；实际提交时应在 GitHub 或课程建议的 diff 网页中生成修改统计截图，并替换下面的占位图。为了说明代码规模，表 \ref{tab:code-files} 列出本次报告涉及的主要实现文件及当前行数。
+实验代码已上传到个人 GitHub 仓库，并使用差异报告工具将学生实现与教师示例代码进行比较。差异报告分别比较了单周期 CPU 示例目录与 \texttt{source-sc}，以及流水线 CPU 示例目录与 \texttt{source-pipeline}，输出 \texttt{diff.patch} 和 \texttt{report.html}。为了说明代码规模，表 \ref{tab:code-files} 列出本次报告涉及的主要实现文件及当前行数。
 
 \begin{table}[H]
 \centering
@@ -500,9 +509,9 @@ CPU 类型 & 仿真命令入口 & 原始学号 & 排序结果 \\
 \end{tabular}
 \end{table}
 
-GitHub 链接：\url{https://github.com/username/repository}
+GitHub 链接：\url{https://github.com/Ikalovic/cpu}
 
-\placeholder{diff 网页顶部统计截图占位：请替换为 GitHub diff 或课程工具生成的 diff 网页截图，截图只需展示修改文件列表和每个文件增删行数。}{5cm}
+\reportimage{figures/diff-stats.png}{0.94}{Verilog 差异报告顶部统计与修改文件列表}
 
 \section{结果分析}
 
@@ -514,6 +523,6 @@ GitHub 链接：\url{https://github.com/username/repository}
 
 \section{结论}
 
-本实验完成了单周期、多周期和流水线 RISC-V CPU 的扩展实现，并使用教师提供的最终验收 testbench 与学号排序程序进行了验证。单周期 CPU 完成了扩展指令的译码、ALU 运算、分支跳转和写回路径；多周期 CPU 完成了同一程序在状态机结构下的执行；流水线 CPU 在模块化整理后通过 IF/ID、ID/EX、EX/MEM、MEM/WB 四组段寄存器推进指令，并通过 \texttt{hazard\_unit.v}、\texttt{pipe\_branch.v} 和转发选择逻辑处理数据冒险与控制冒险。仿真结果显示最终扩展指令测试 16/16 通过，三类 CPU 的学号排序结果均为 \texttt{03345578}。提交前仍需补充真实测试截图、开发板照片、GitHub 链接和 diff 统计截图，以满足最终报告中的图像证据要求。
+本实验完成了单周期、多周期和流水线 RISC-V CPU 的扩展实现，并使用教师提供的最终验收 testbench 与学号排序程序进行了验证。单周期 CPU 完成了扩展指令的译码、ALU 运算、分支跳转和写回路径；多周期 CPU 完成了同一程序在状态机结构下的执行；流水线 CPU 在模块化整理后通过 IF/ID、ID/EX、EX/MEM、MEM/WB 四组段寄存器推进指令，并通过 \texttt{hazard\_unit.v}、\texttt{pipe\_branch.v} 和转发选择逻辑处理数据冒险与控制冒险。仿真结果显示最终扩展指令测试 16/16 通过，三类 CPU 的学号排序结果均为 \texttt{03345578}；开发板照片和差异报告截图进一步补充了硬件演示与代码审查证据。
 
 \end{document}
